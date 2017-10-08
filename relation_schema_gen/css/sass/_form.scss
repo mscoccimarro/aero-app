@@ -1,0 +1,51 @@
+select {
+  display: block;
+  width: 200px;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 0 auto;
+
+  &.rel-schema {
+    margin-bottom: 30px;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-family: $main-font;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-bottom: 12px;
+
+  &:focus {
+    border-color: $light-blue;
+  }
+}
+
+.rel-schema-form {
+  width: 800px;
+  margin: 0 auto 30px;
+  @include floatfix;
+}
+
+.form-row {
+  float: left;
+  width: 48%;
+
+  &:nth-child(even) {
+    float: right;
+  }
+
+  &:nth-child(odd) {
+    clear: both;
+  }
+}

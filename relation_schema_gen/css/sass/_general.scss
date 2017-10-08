@@ -1,0 +1,98 @@
+h1, h2, h3, h4,
+h5, h6, p, a {
+  font-family: $main-font;
+  font-weight: $normal;
+}
+
+p {
+  font-size: 14px;
+}
+
+.button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background-color: $main-color;
+  color: $white;
+  font-size: 14px;
+  line-height: 40px;
+  text-align: center;
+
+  &:hover {
+    background-color: $light-blue;
+  }
+}
+
+.title {
+  font-weight: $semibold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.line-separator {
+  width: 50px;
+  height: 4px;
+  margin: 10px auto 30px;
+  border: none;
+  background-color: $main-color;
+}
+
+.section-title {
+  @extend .title;
+  font-weight: $bold;
+}
+
+.logo {
+  color: $main-color;
+  font-size: 40px;
+}
+
+.table {
+  display: table;
+  border-spacing: 5px 15px;
+  border-collapse: separate;
+  margin: 0 auto;
+
+  .table-row {
+    display: table-row;
+
+    &.header {
+      .table-col {
+        color: $white;
+        background-color: $main-color;
+        border-color: $main-color;
+      }
+    }
+  }
+
+  .table-col {
+    display: table-cell;
+    padding: 5px 15px;
+    border: 1px solid #d3d3d3;
+    background-color: $white;
+  }
+}
+
+.rel-schema-results {
+  .table {
+    margin-top: 20px;
+  }
+}
+
+.msg {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.error-msg {
+  @extend .msg;
+  color: #db2e2e;
+}
+
+.results-msg {
+  @extend .msg;
+  color: hsl(150, 50%, 40%);
+}
