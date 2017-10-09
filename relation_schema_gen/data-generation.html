@@ -86,6 +86,7 @@
 
   <!-- FORM SECTION WRAP -->
   <div class="form-section-wrap">
+      
     <!-- FORM SECTION -->
     <div class="form-section limit-grid">
       <h2 class="section-title">Generar Datos</h2>
@@ -93,7 +94,11 @@
 
       <!-- REL SCHEMA -->
       <select id="rel-schema" class="rel-schema"></select>
-
+        <div align=center>
+            <input id="cargaMasiva" type="checkbox" name="cargaMasiva" value="masiva" onclick="cargaMasiva()"> Carga Masiva<br>
+            <input id="cantidadTuplas" type="text" class="inputsNumeric" hidden=true><br><br>
+        </div>
+        
       <!-- REL SCHEMA FORM -->
       <form class="rel-schema-form"></form>
       <a href="#" class="button rel-schema-load">Cargar</a>
