@@ -45,7 +45,9 @@ function generateForm(data) {
         label = document.createElement('label'),
         input = document.createElement('input'),
         labelAutoIncremento = document.createElement('label'),
-        autoIncremento = document.createElement('input');
+        autoIncremento = document.createElement('input'),
+        labelRandom = document.createElement('label'),
+        random = document.createElement('input');
 
     row.classList.add('form-row');
 
@@ -66,8 +68,18 @@ function generateForm(data) {
     autoIncremento.hidden = true;
     autoIncremento.setAttribute('class', "hidden");
 
+    labelRandom.innerHTML = 'Random:';
+    labelRandom.setAttribute('style', 'display:none');
+    labelRandom.setAttribute('class', "displayNone");
 
-    row.append(label, input, labelAutoIncremento, autoIncremento);
+    random.type = "checkbox";
+    random.name = prop + 'Random';
+    random.id = prop + 'Random';
+    random.hidden = true;
+    random.setAttribute('class', "hidden");
+
+
+    row.append(label, input, labelAutoIncremento, autoIncremento, labelRandom, random);
 
     container.append(row);
     formObject[prop] = '';
