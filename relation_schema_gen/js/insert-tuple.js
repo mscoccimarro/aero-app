@@ -46,7 +46,7 @@ function generateForm(data) {
         input = document.createElement('input'),
         labelAutoIncremento = document.createElement('label'),
         autoIncremento = document.createElement('input');
-      
+
     row.classList.add('form-row');
 
     label.innerHTML = prop;
@@ -55,17 +55,17 @@ function generateForm(data) {
     input.setAttribute('data-type', type);
     input.name = prop;
     input.id = prop;
-    
+
     labelAutoIncremento.innerHTML = "AutoIncremento: ";
     labelAutoIncremento.setAttribute('style', 'display:none');
     labelAutoIncremento.setAttribute('class', "displayNone");
-      
+
     autoIncremento.type = "checkbox";
     autoIncremento.name = prop + 'Checkbox';
     autoIncremento.id = prop + 'Checkbox';
     autoIncremento.hidden = true;
     autoIncremento.setAttribute('class', "hidden");
-    
+
 
     row.append(label, input, labelAutoIncremento, autoIncremento);
 
@@ -85,11 +85,11 @@ function sendData() {
   var formData = document.querySelectorAll('.form-data');
     var cantidadTuplas = document.getElementById("cantidadTuplas").value;
     if (cantidadTuplas == "") cantidadTuplas = "1";
-    
+
   for (var i = 0; i < formData.length; i++) {
     formObject[formData[i].name] = {};
     formObject[formData[i].name].value = formData[i].value;
-    formObject[formData[i].name].autoIncremento = document.getElementById(formData[i].getAttribute('id')+"Checkbox").checked;  
+    formObject[formData[i].name].autoIncremento = document.getElementById(formData[i].getAttribute('id')+"Checkbox").checked;
     formObject[formData[i].name].type = formData[i].getAttribute('data-type');
   }
 
@@ -101,22 +101,21 @@ function sendData() {
 }
 
 function cargaMasiva() {
-    
-    // Tomo el valor actual del hidden 
-    var isHidden = document.getElementById("cantidadTuplas").hidden;
-    
-    // Muestro / Oculto la cantidad de tuplas a guardar
-    document.getElementById("cantidadTuplas").hidden = !isHidden;
-    
-    // Muestro / Oculto los checkbox
-    var listHidden = document.getElementsByClassName("hidden");
-    for (var i = 0; i < listHidden.length; i++) {
-        listHidden[i].hidden = !isHidden;
-    }
-    
-     // Muestro / Oculto los labels
-    var listDisplayNone = document.getElementsByClassName("displayNone");
-    for (var i = 0; i < listDisplayNone.length; i++) {
-        listDisplayNone[i].setAttribute('style', isHidden ? '' : 'display:none');
-    }
+  // Tomo el valor actual del hidden
+  var isHidden = document.getElementById("cantidadTuplas").hidden;
+
+  // Muestro / Oculto la cantidad de tuplas a guardar
+  document.getElementById("cantidadTuplas").hidden = !isHidden;
+
+  // Muestro / Oculto los checkbox
+  var listHidden = document.getElementsByClassName("hidden");
+  for (var i = 0; i < listHidden.length; i++) {
+      listHidden[i].hidden = !isHidden;
+  }
+
+   // Muestro / Oculto los labels
+  var listDisplayNone = document.getElementsByClassName("displayNone");
+  for (var i = 0; i < listDisplayNone.length; i++) {
+      listDisplayNone[i].setAttribute('style', isHidden ? '' : 'display:none');
+  }
 }
