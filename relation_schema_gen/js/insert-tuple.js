@@ -103,6 +103,15 @@ function sendData() {
     formObject[formData[i].name].value = formData[i].value;
     formObject[formData[i].name].autoIncremento = document.getElementById(formData[i].getAttribute('id')+"Checkbox").checked;
     formObject[formData[i].name].type = formData[i].getAttribute('data-type');
+      
+    if (document.getElementById(formData[i].getAttribute('id')+"Random").checked) {
+        //Tengo que hacer un select del valor del input
+        var tabla = formData[i].value.split("-")[0];
+        var primaryKey = formData[i].value.split("-")[1];
+        var relacion = hacerConsulta(tabla, primaryKey);
+        var primaryKeyRandom = getPrimaryKeyRandom(relacion, primaryKey);
+        //Elegir random
+    }
   }
 
   // TODO: remove log
@@ -130,4 +139,22 @@ function cargaMasiva() {
   for (var i = 0; i < listDisplayNone.length; i++) {
       listDisplayNone[i].setAttribute('style', isHidden ? '' : 'display:none');
   }
+}
+
+function hacerConsulta(tabla, primaryKey) {
+    var data;
+   data = xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + tabla});
+    return data;
+}
+
+function getRelacion(data) {
+    data = JSON.parse(data);
+    return data;
+}
+
+function getPrimaryKeyRandom(relacion, primaryKey) {
+    
+    for (var i = 0; i < relacion.length; i++) {
+        i++;
+    }
 }
