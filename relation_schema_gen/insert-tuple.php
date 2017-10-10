@@ -34,8 +34,14 @@
 
     $sql = substr($sql, 0, strlen($sql)-2);
     $sql .= ");";
-
     echo $sql;
+
+    $path = "files/";
+    // create log file for inserts
+    if (file_put_contents($path . $relation . "_data.sql", $sql . "\n", FILE_APPEND) === false) {
+      echo "Error on file write";
+    }
+
     $result = $link->query($sql);
   }
 
