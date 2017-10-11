@@ -108,13 +108,14 @@ function sendData() {
       
     if (document.getElementById(formData[i].getAttribute('id')+"Random").checked) {
         //Recupero del mapa de foreign keys, todos las tuplas de dicha foreign key
-        var relacion = formData[i].value;
-        var fk = formData[i].getAttribute("id");
-        var list = fkMap[fk];
+        var value = formData[i].value;
+        var keyMap = formData[i].getAttribute("id");
+        var list = fkMap[keyMap];
         //Elijo una tupla de manera random (Si no se desea random, solo cambiar la siguiente funcion)
         var valueRandom = getElementRandomOfList(list);
         //Se modifica el valor de relacion por el valor a realmente guardar que es foreign key.
-        formObject[formData[i].name].value = valueRandom[fk];
+        var pk = value.split("-")[1];
+        formObject[formData[i].name].value = valueRandom[pk];
     }
   }
 
@@ -160,7 +161,7 @@ function cargarMapaForeignKeys(button) {
     if (button.checked) {
         var idButton = button.getAttribute("id");
         var idLabel = idButton.split("Random")[0];
-        var relacion = document.getElementById(idLabel).value;
+        var relacion = document.getElementById(idLabel).value.split("-")[0];
 
         keyFK = idLabel;
         xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + relacion}, getResultSelect);
