@@ -1,4 +1,6 @@
 var select = document.querySelector('.rel-schema');
+var keyFK;
+var fkMap = {};
 
 xm_gen.ajax.query({file: 'fetch-schema.php'}, showSchema);
 
@@ -77,7 +79,8 @@ function generateForm(data) {
     random.id = prop + 'Random';
     random.hidden = true;
     random.setAttribute('class', "hidden");
-
+    random.setAttribute('onchange', "cargarMapaForeignKeys(this);");
+    
 
     row.append(label, input, labelAutoIncremento, autoIncremento, labelRandom, random);
 
@@ -105,12 +108,12 @@ function sendData() {
     formObject[formData[i].name].type = formData[i].getAttribute('data-type');
       
     if (document.getElementById(formData[i].getAttribute('id')+"Random").checked) {
-        //Tengo que hacer un select del valor del input
-        var tabla = formData[i].value.split("-")[0];
-        var primaryKey = formData[i].value.split("-")[1];
-        var relacion = hacerConsulta(tabla, primaryKey);
-        var primaryKeyRandom = getPrimaryKeyRandom(relacion, primaryKey);
-        //Elegir random
+        //Recupero del mapa de foreign keys, todos las tuplas de dicha foreign key
+        var relacion = formData[i].value;
+        var fk = formData[i].getAttribute("id");
+        var list = fkMap[fk];
+        //Elijo una tupla de manera random (Si no se desea random, solo cambiar la siguiente funcion)
+        var valueRandom = getElementRandomOfList(list);
     }
   }
 
@@ -141,20 +144,44 @@ function cargaMasiva() {
   }
 }
 
-function hacerConsulta(tabla, primaryKey) {
-    var data;
-   data = xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + tabla});
-    return data;
-}
-
-function getRelacion(data) {
-    data = JSON.parse(data);
-    return data;
-}
-
-function getPrimaryKeyRandom(relacion, primaryKey) {
+function getResultSelect(data) {
     
-    for (var i = 0; i < relacion.length; i++) {
-        i++;
+    if (data != "") {
+         var valueFkMap = JSON.parse(data);
+         fkMap[keyFK] = valueFkMap;
+         keyFK = null;
     }
+   
+}
+
+function cargarMapaForeignKeys(button) {
+    
+    if (button.checked) {
+        var idButton = button.getAttribute("id");
+        var idLabel = idButton.split("Random")[0];
+        var relacion = document.getElementById(idLabel).value;
+
+        keyFK = idLabel;
+        xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + relacion}, getResultSelect);
+    }
+    
+}
+
+function getElementRandomOfList(list) {
+    
+    if (list != null && list.length > 0) {
+        
+        var i = getRandomInt(0, list.length);
+        return list[i];
+    }
+    return null;
+}
+
+// Retorna un número aleatorio entre min (incluido) y max (excluido)
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
