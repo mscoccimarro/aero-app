@@ -105,17 +105,21 @@ function sendData() {
     formObject[formData[i].name].value = formData[i].value;
     formObject[formData[i].name].autoIncremento = document.getElementById(formData[i].getAttribute('id')+"Checkbox").checked;
     formObject[formData[i].name].type = formData[i].getAttribute('data-type');
+    formObject[formData[i].name].random = false;
       
     if (document.getElementById(formData[i].getAttribute('id')+"Random").checked) {
+        formObject[formData[i].name].random = true;
         //Recupero del mapa de foreign keys, todos las tuplas de dicha foreign key
         var value = formData[i].value;
         var keyMap = formData[i].getAttribute("id");
         var list = fkMap[keyMap];
         //Elijo una tupla de manera random (Si no se desea random, solo cambiar la siguiente funcion)
-        var valueRandom = getElementRandomOfList(list);
+        //var valueRandom = getElementRandomOfList(list);
         //Se modifica el valor de relacion por el valor a realmente guardar que es foreign key.
         var pk = value.split("-")[1];
-        formObject[formData[i].name].value = valueRandom[pk];
+        var listFK = getListaRelacionByPK(pk, list);
+        //formObject[formData[i].name].value = valueRandom[pk];
+        formObject[formData[i].name].value = listFK;
     }
   }
 
@@ -182,4 +186,14 @@ function getElementRandomOfList(list) {
 // Retorna un número aleatorio entre min (incluido) y max (excluido)
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getListaRelacionByPK(pk, list) {
+    
+    var listReturned = [];
+    for (var i = 0; i < list.length; i++) {
+        var pkElement = list[i][pk];
+        listReturned.push(pkElement);
+    }
+    return listReturned;
 }
