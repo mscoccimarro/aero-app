@@ -13,16 +13,17 @@
             $type = $item['type'];
             $isAutoIncremento = $item['autoIncremento'];
 
+            //Carga random de un valor de las claves primarias de la lista.
             $isRandom = $item['random'];
             if($isRandom) {
-                //Elegir random de $item["value"] (en $item["value"] viene una lista de pks (EN el caso que estamos viendo con key, lista de codigos IATA))
-                //Elegir codigo iata random
-                //sumarlo a la query $sql 
                 $listaPK = $item["value"];
                 $numRandom = rand(0, count($listaPK));    
-                $valorRandom = $listaPK[$numRandom];
-                echo $valorRandom;          
-                $sql .= "'".$valorRandom."'";
+                $valorRandom = $listaPK[$numRandom];   
+                if (!preg_match('/int/i', $type)) {
+                    $sql .= "'".$valorRandom."'";
+                }else {
+                    $sql .= $valorRandom;
+                }
             }else {
                 if (!preg_match('/int/i', $type)) {
                     $sql .= "'" . $item["value"];
