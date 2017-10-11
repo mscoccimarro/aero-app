@@ -17,7 +17,7 @@
             $isRandom = $item['random'];
             if($isRandom) {
                 $listaPK = $item["value"];
-                $numRandom = rand(0, count($listaPK));    
+                $numRandom = rand(0, count($listaPK)-1);    
                 $valorRandom = $listaPK[$numRandom];   
                 if (!preg_match('/int/i', $type)) {
                     $sql .= "'".$valorRandom."'";
