@@ -34,6 +34,11 @@
                 //Elegir random de $item["value"] (en $item["value"] viene una lista de pks (EN el caso que estamos viendo con key, lista de codigos IATA))
                 //Elegir codigo iata random
                 //sumarlo a la query $sql 
+                $listaPK = array_values($item["value"]);
+                $valorRandom = rand(0, count($listaPK));    
+                echo $valorRandom;          
+                echo $listaPK[$valorRandom];
+                $sql .= $listaPK[$valorRandom];
             }
 
             $sql .= ', ';
