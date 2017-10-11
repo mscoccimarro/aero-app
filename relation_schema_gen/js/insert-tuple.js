@@ -80,7 +80,6 @@ function generateForm(data) {
     random.hidden = true;
     random.setAttribute('class', "hidden");
     random.setAttribute('onchange', "cargarMapaForeignKeys(this);");
-    
 
     row.append(label, input, labelAutoIncremento, autoIncremento, labelRandom, random);
 
@@ -114,6 +113,8 @@ function sendData() {
         var list = fkMap[fk];
         //Elijo una tupla de manera random (Si no se desea random, solo cambiar la siguiente funcion)
         var valueRandom = getElementRandomOfList(list);
+        //Se modifica el valor de relacion por el valor a realmente guardar que es foreign key.
+        formObject[formData[i].name].value = valueRandom[fk];
     }
   }
 
@@ -178,10 +179,6 @@ function getElementRandomOfList(list) {
 }
 
 // Retorna un número aleatorio entre min (incluido) y max (excluido)
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
