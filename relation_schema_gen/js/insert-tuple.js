@@ -1,4 +1,6 @@
 var select = document.querySelector('.rel-schema');
+var keyFK;
+var fkMap = {};
 
 xm_gen.ajax.query({file: 'fetch-schema.php'}, showSchema);
 
@@ -45,7 +47,9 @@ function generateForm(data) {
         label = document.createElement('label'),
         input = document.createElement('input'),
         labelAutoIncremento = document.createElement('label'),
-        autoIncremento = document.createElement('input');
+        autoIncremento = document.createElement('input'),
+        labelRandom = document.createElement('label'),
+        random = document.createElement('input');
 
     row.classList.add('form-row');
 
@@ -66,8 +70,18 @@ function generateForm(data) {
     autoIncremento.hidden = true;
     autoIncremento.setAttribute('class', "hidden");
 
+    labelRandom.innerHTML = 'Random:';
+    labelRandom.setAttribute('style', 'display:none');
+    labelRandom.setAttribute('class', "displayNone");
 
-    row.append(label, input, labelAutoIncremento, autoIncremento);
+    random.type = "checkbox";
+    random.name = prop + 'Random';
+    random.id = prop + 'Random';
+    random.hidden = true;
+    random.setAttribute('class', "hidden");
+    random.setAttribute('onchange', "cargarMapaForeignKeys(this);");
+
+    row.append(label, input, labelAutoIncremento, autoIncremento, labelRandom, random);
 
     container.append(row);
     formObject[prop] = '';
@@ -91,6 +105,22 @@ function sendData() {
     formObject[formData[i].name].value = formData[i].value;
     formObject[formData[i].name].autoIncremento = document.getElementById(formData[i].getAttribute('id')+"Checkbox").checked;
     formObject[formData[i].name].type = formData[i].getAttribute('data-type');
+    formObject[formData[i].name].random = false;
+      
+    if (document.getElementById(formData[i].getAttribute('id')+"Random").checked) {
+        formObject[formData[i].name].random = true;
+        //Recupero del mapa de foreign keys, todos las tuplas de dicha foreign key
+        var value = formData[i].value;
+        var keyMap = formData[i].getAttribute("id");
+        var list = fkMap[keyMap];
+        //Elijo una tupla de manera random (Si no se desea random, solo cambiar la siguiente funcion)
+        //var valueRandom = getElementRandomOfList(list);
+        //Se modifica el valor de relacion por el valor a realmente guardar que es foreign key.
+        var pk = value.split("-")[1];
+        var listFK = getListaRelacionByPK(pk, list);
+        //formObject[formData[i].name].value = valueRandom[pk];
+        formObject[formData[i].name].value = listFK;
+    }
   }
 
   // TODO: remove log
@@ -118,4 +148,52 @@ function cargaMasiva() {
   for (var i = 0; i < listDisplayNone.length; i++) {
       listDisplayNone[i].setAttribute('style', isHidden ? '' : 'display:none');
   }
+}
+
+function getResultSelect(data) {
+    
+    if (data != "") {
+         var valueFkMap = JSON.parse(data);
+         fkMap[keyFK] = valueFkMap;
+         keyFK = null;
+    }
+   
+}
+
+function cargarMapaForeignKeys(button) {
+    
+    if (button.checked) {
+        var idButton = button.getAttribute("id");
+        var idLabel = idButton.split("Random")[0];
+        var relacion = document.getElementById(idLabel).value.split("-")[0];
+
+        keyFK = idLabel;
+        xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + relacion}, getResultSelect);
+    }
+    
+}
+
+function getElementRandomOfList(list) {
+    
+    if (list != null && list.length > 0) {
+        
+        var i = getRandomInt(0, list.length);
+        return list[i];
+    }
+    return null;
+}
+
+// Retorna un número aleatorio entre min (incluido) y max (excluido)
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getListaRelacionByPK(pk, list) {
+    
+    var listReturned = [];
+    for (var i = 0; i < list.length; i++) {
+        var pkElement = list[i][pk];
+        listReturned.push(pkElement);
+    }
+    return listReturned;
 }
