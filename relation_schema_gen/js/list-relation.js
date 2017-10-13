@@ -1,4 +1,5 @@
-var select = document.querySelector('.rel-schema');
+var select = document.querySelector('.rel-schema'),
+    refreshBtn = document.querySelector('.refresh-btn');
 
 toggleLoading();
 xm_gen.ajax.query({file: 'fetch-schema.php'}, showSchema);
@@ -18,7 +19,7 @@ function showSchema(data) {
     select.append(option);
   });
 
-  setTimeout(function(){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
+  setTimeout(function (){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
 }
 
 function toggleLoading() {
@@ -35,7 +36,12 @@ function toggleLoading() {
 
 select.addEventListener('change', function () {
   toggleLoading();
-  setTimeout(function(){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
+  setTimeout(function (){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
+});
+
+refreshBtn.addEventListener('click', function () {
+  toggleLoading();
+  setTimeout(function (){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
 });
 
 function generateTable(data) {

@@ -5,4 +5,34 @@
 .form-section {
   min-height: 600px;
   padding: 60px 0 100px;
+  position: relative;
+
+  .refresh-btn {
+    width: 50px;
+    height: 50px;
+    padding-top: 10px;
+    background-color: #db2e2e;
+    border-radius: 4px;
+    position: absolute;
+    top: 55px;
+    right: 60px;
+    cursor: pointer;
+    text-align: center;
+    @include transition(.25s);
+
+    &:hover {
+      background-color: hsl(150, 50%, 40%);
+
+      .refresh-icon {
+        transform: rotate(360deg);
+      }
+    }
+
+    .refresh-icon {
+      color: $white;
+      font-size: 30px;
+      transform: rotate(45deg);
+      @include transition(.15s);
+    }
+  }
 }
