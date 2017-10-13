@@ -1,5 +1,7 @@
-var select = document.querySelector('.rel-schema');
+var select = document.querySelector('.rel-schema'),
+    refreshBtn = document.querySelector('.refresh-btn');
 
+toggleLoading();
 xm_gen.ajax.query({file: 'fetch-schema.php'}, showSchema);
 
 function showSchema(data) {
@@ -17,16 +19,36 @@ function showSchema(data) {
     select.append(option);
   });
 
-  xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable);
+  setTimeout(function (){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
+}
+
+function toggleLoading() {
+  var container = document.querySelector('.rel-schema-results'),
+      loader = document.createElement('div'),
+      loading = document.createElement('i');
+
+  container.innerHTML = "";
+  loader.classList.add('loader');
+  loading.classList.add('loading-icon', 'fa', 'fa-cog', 'fa-spin', 'fa-3x', 'fa-fw');
+  loader.append(loading);
+  container.append(loader);
 }
 
 select.addEventListener('change', function () {
-  xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + this.value}, generateTable);
+  toggleLoading();
+  setTimeout(function (){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
+});
+
+refreshBtn.addEventListener('click', function () {
+  toggleLoading();
+  setTimeout(function (){xm_gen.ajax.query({file: 'fetch-relation.php?relation=' + select.value}, generateTable)}, 500);
 });
 
 function generateTable(data) {
   var container = document.querySelector('.rel-schema-results');
+
   container.innerHTML = "";
+
   data = JSON.parse(data);
 
   if (data.length === 0) {

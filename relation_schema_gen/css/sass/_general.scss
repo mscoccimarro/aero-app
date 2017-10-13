@@ -49,6 +49,16 @@ p {
   font-size: 40px;
 }
 
+.loader {
+  padding-top: 40px;
+  text-align: center;
+
+  .loading-icon {
+    color: $main-color;
+    font-size: 100px;
+  }
+}
+
 .table {
   display: table;
   border-spacing: 5px 15px;
@@ -76,6 +86,11 @@ p {
 }
 
 .rel-schema-results {
+  height: 400px;
+  padding: 0 15px;
+  overflow: auto;
+  margin: 0 auto;
+
   .table {
     margin-top: 20px;
   }
