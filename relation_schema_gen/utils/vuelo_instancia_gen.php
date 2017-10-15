@@ -31,7 +31,7 @@
   $cantVuelos = 1000;
   $startDate = "07/01/2017";
   $endDate = "12/31/2017";
-  $sql = "INSERT INTO vuelo_instancia(fechaDespegue, cantidadMinimaAsientos, fechaInstanciaVuelo, fechaInicioVentaPasajes, servicioMangaLlegada, servicioMangaSalida, inicioVentaPasajes, habilitadoPorTecnico, reservaPuertaSalida, cargaDeCombustible, cargaDePasajeros, despachado, autorizadoDespegue, enDespegue, despegado, abordajeCerrado, matricula, codigoUnicoVuelo) VALUES";
+  $sql = "INSERT INTO vuelo_instancia(fechaDespegue, cantidadMinimaAsientos, cantidadTotalPasajeros, fechaInstanciaVuelo, fechaInicioVentaPasajes, servicioMangaLlegada, servicioMangaSalida, inicioVentaPasajes, habilitadoPorTecnico, reservaPuertaSalida, cargaDeCombustible, cargaDePasajeros, despachado, autorizadoDespegue, enDespegue, despegado, abordajeCerrado, cancelado, matricula, codigoUnicoVuelo) VALUES";
 
   for ($i = 0; $i < $cantVuelos; $i++) {
     // matricula de la aeronave aleatoria y cantidad minima de asientos
@@ -45,6 +45,7 @@
       $cantDePasajeros[] = $row['cantidadDePasajeros'];
     }
     $cantMinAsientos = $cantDePasajeros[0] * 0.9;
+    $cantTotalPasajeros = rand($cantMinAsientos, $cantDePasajeros[0]);
     //
 
     $vueloGenIndex = rand(0, count($vuelosGenericos)-1);
@@ -65,9 +66,13 @@
     //
 
     // estados aleatorios de instancia de vuelo
+    $cancelado = rand(0, 1);
     $estadoActual = rand(0, count($estados)-1);
+    if ($estadoActual >= 8) {
+      $cancelado = 0;
+    }
 
-    $sql .= "('{$fechaDespegue}', {$cantMinAsientos},'{$fechaInstanciaVuelo}', '{$fechaVentaPasajes}',
+    $sql .= "('{$fechaDespegue}', {$cantMinAsientos}, {$cantTotalPasajeros}, '{$fechaInstanciaVuelo}', '{$fechaVentaPasajes}',
     {$servicioMangaLlegada}, {$servicioMangaSalida},";
 
     for ($j = 0; $j < count($estados); $j++) {
@@ -79,7 +84,7 @@
     }
     //
 
-    $sql .= " '{$matricula}', {$codUnicoVuelo}),";
+    $sql .= " {$cancelado}, '{$matricula}', {$codUnicoVuelo}),";
   }
 
   $sql = substr($sql, 0, strlen($sql)-1);
