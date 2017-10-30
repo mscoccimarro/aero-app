@@ -1,9 +1,15 @@
-var schemaData = [];
+var reservas = [],
+    aerolineas = [];
+
+xm_gen.ajax.query({file: 'fetch-relation.php?relation=aerolinea'}, function (data) {
+  aerolineas = JSON.parse(data);
+});
+
 xm_gen.ajax.query({file: 'fetch-relation.php?relation=reserva'}, createDataList);
 
 function createDataList(data) {
   data = JSON.parse(data);
-  schemaData = data;
+  reservas = data;
   // TODO: remove log
   console.log(data);
 
@@ -56,11 +62,34 @@ function createDataList(data) {
     dataList.append(dataListRow);
   });
 
+  function fillFormData() {
+    var s_estados = document.querySelector('#s_estado'),
+        s_aerolineas = document.querySelector('#s_aerolinea'),
+        s_vuelos = document.querySelector('#s_vuelo'),
+        option;
+
+    s_estados.innerHTML = '';
+    s_aerolineas.innerHTML = '';
+    s_vuelos.innerHTML = '';
+
+    aerolineas.forEach(function (el, i) {
+      option = document.createElement('option');
+      option.value = el['idAerolinea'];
+      option.innerHTML = el['nombreAerolinea'];
+      s_aerolineas.append(option);
+    });
+  }
+
   $('.trigger-popup').magnificPopup({
     type:'inline',
     showCloseBtn: false,
     mainClass: 'mfp-anim',
-    removalDelay: 300
+    removalDelay: 300,
+    callbacks: {
+      beforeOpen: function() {
+        fillFormData();
+      }
+    }
   });
   // custom close button
   $('.popup-close-btn').on('click', $.magnificPopup.instance.close);
