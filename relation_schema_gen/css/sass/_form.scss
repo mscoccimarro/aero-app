@@ -35,11 +35,59 @@ input[type="text"], textarea {
   width: 800px;
   margin: 0 auto 30px;
   @include floatfix;
+
+  &.top-spaced {
+    margin-top: 80px;
+  }
+}
+
+
+.form-action {
+  color: hsl(150, 50%, 40%);
+  font-weight: $bold;
+  font-size: 20px;
+  position: relative;
+  top: 2px;
 }
 
 .form-row {
   float: left;
   width: 48%;
+
+  &.full {
+    float: none;
+    width: 100%;
+    margin: 0 auto 25px;
+
+    &.spaced {
+      margin-top: 60px;
+    }
+
+    label {
+      text-align: center;
+    }
+
+    select {
+      width: 100%;
+      margin: 14px auto 0;
+    }
+  }
+
+  &.buttons {
+    @include floatfix;
+
+    .button {
+      float: left;
+
+      &:last-child {
+        float: right;
+      }
+    }
+  }
+
+  select {
+    margin: 0;
+  }
 
   &:nth-child(even) {
     float: right;

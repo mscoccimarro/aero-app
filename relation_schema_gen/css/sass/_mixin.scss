@@ -6,8 +6,13 @@
   }
 }
 
+@mixin transform_scale($scale) {
+  -webkit-transform: scale($scale);
+  transform: scale($scale);
+}
+
 @mixin transition($time, $what:all, $ease:ease-in-out) {
   transition: $what $time $ease;
 }
 
-$max-index: 10000;
+$max-index: 1000;
