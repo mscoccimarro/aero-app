@@ -1,0 +1,18 @@
+.footer-wrap {}
+
+.footer {
+  min-height: 60px;
+  padding: 0 15px;
+  border-top: 1px solid #d3d3d3;
+  line-height: 60px;
+  @include floatfix;
+
+  .repo-link {
+    float: right;
+
+    .fa-github {
+      color: #333;
+      font-size: 25px;
+    }
+  }
+}

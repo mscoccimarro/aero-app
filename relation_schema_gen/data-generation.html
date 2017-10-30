@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="css/style.min.css">
   <!-- favicon -->
   <link rel="icon" href="favicon.ico">
-  <title>Relation Schema Generator</title>
+  <title>RSG | Gen</title>
 </head>
 <body>
+
   <!-- NAVIGATION WRAP -->
   <div class="navigation-wrap">
     <!-- NAVIGATION -->
@@ -29,52 +30,46 @@
         <!-- /MAIN MENU ITEM -->
 
         <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item sub">
-          <a href="data-generation.html">
-            Generar
+        <li class="main-menu-item sub selected">
+          <a href="data-generation.html">Generar</a>
+        </li>
+        <!-- /MAIN MENU ITEM -->
+
+        <!-- MAIN MENU ITEM -->
+        <li class="main-menu-item">
+          <a href="#">
+            Transacciones
             <!-- DROPDOWN IDENTIFIER -->
             <i class="dropdown-identifier fa fa-angle-down" aria-hidden="true"></i>
           </a>
 
           <!-- DROPDOWN LIST -->
-          <ul class="dropdown-list">
+          <ul class="dropdown-list medium">
             <!-- DROPDOWN LIST ITEM -->
             <li class="dropdown-list-item">
-              <a href="#">Aeronave</a>
+              <a href="gestion-reservas.html">Gestion de Reservas</a>
             </li>
             <!-- DROPDOWN LIST ITEM -->
 
             <!-- DROPDOWN LIST ITEM -->
             <li class="dropdown-list-item">
-              <a href="#">Aeropuerto</a>
+              <a href="alta-vuelo.html">Alta de Instancia de Vuelo</a>
             </li>
             <!-- DROPDOWN LIST ITEM -->
 
             <!-- DROPDOWN LIST ITEM -->
             <li class="dropdown-list-item">
-              <a href="#">Pasajero</a>
+              <a href="cierre-vuelo.html">Cierre de Instancia de Vuelo</a>
+            </li>
+            <!-- DROPDOWN LIST ITEM -->
+
+            <!-- DROPDOWN LIST ITEM -->
+            <li class="dropdown-list-item">
+              <a href="promover-pasajero.html">Promover Pasajero</a>
             </li>
             <!-- DROPDOWN LIST ITEM -->
           </ul>
           <!-- /DROPDOWN LIST -->
-        </li>
-        <!-- /MAIN MENU ITEM -->
-
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
-          <a href="#">Reservas</a>
-        </li>
-        <!-- /MAIN MENU ITEM -->
-
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
-          <a href="#">Vuelos</a>
-        </li>
-        <!-- /MAIN MENU ITEM -->
-
-        <!-- MAIN MENU ITEM -->
-        <li class="main-menu-item">
-          <a href="#">Pasajeros</a>
         </li>
         <!-- /MAIN MENU ITEM -->
       </ul>
@@ -86,7 +81,7 @@
 
   <!-- FORM SECTION WRAP -->
   <div class="form-section-wrap">
-      
+
     <!-- FORM SECTION -->
     <div class="form-section limit-grid">
       <h2 class="section-title">Generar Datos</h2>
@@ -98,7 +93,7 @@
             <input id="cargaMasiva" type="checkbox" name="cargaMasiva" value="masiva" onclick="cargaMasiva()"> Carga Masiva<br>
             <input id="cantidadTuplas" type="text" class="inputsNumeric" hidden=true><br><br>
         </div>
-        
+
       <!-- REL SCHEMA FORM -->
       <form class="rel-schema-form"></form>
       <a href="#" class="button rel-schema-load">Cargar</a>
@@ -106,6 +101,21 @@
     <!-- /FORM SECTION -->
   </div>
   <!-- /FORM SECTION WRAP -->
+
+  <!-- FOOTER WRAP -->
+  <div class="footer-wrap">
+    <!-- FOOTER -->
+    <div class="footer limit-grid">
+      <a href="https://docs.google.com/document/d/16d2BgFktxykGaG6LChRxQ__XfnShuVIRvr4n2iU-bqw" target="_blank" class="link">TP Base de Datos - FIUBA 2017</a>
+      <!-- REPO LINK -->
+      <div class="repo-link">
+        <a href="https://github.com/mscoccimarro/aero-app" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+      </div>
+      <!-- /REPO LINK -->
+    </div>
+    <!-- /FOOTER -->
+  </div>
+  <!-- /FOOTER WRAP -->
 
 <!-- app -->
 <script src="js/app.js"></script>

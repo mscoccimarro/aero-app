@@ -4,6 +4,10 @@ h5, h6, p, a {
   font-weight: $normal;
 }
 
+body {
+  background-color: #f2f2f2;
+}
+
 p {
   font-size: 14px;
 }
@@ -22,6 +26,16 @@ p {
 
   &:hover {
     background-color: $light-blue;
+  }
+}
+
+.link {
+  font-size: 14px;
+  color: $main-color;
+  font-weight: 400;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
