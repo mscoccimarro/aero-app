@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <!-- styles -->
   <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/vendor/magnific-popup.css">
   <!-- favicon -->
   <link rel="icon" href="favicon.ico">
   <title>RSG | Reservas</title>
@@ -148,7 +149,7 @@
 
           <!-- DATA LIST COL -->
           <div class="data-list-col">
-            <a href="#" class="form-action" title="Modificar">
+            <a href="#pp-form" class="form-action trigger-popup" title="Modificar">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </a>
           </div>
@@ -158,37 +159,41 @@
       </div>
       <!-- /DATA LIST -->
 
-      <!-- REL SCHEMA FORM -->
-      <form class="rel-schema-form top-spaced">
-        <!-- FORM ROW -->
-        <div class="form-row full">
-          <label for="s_estado">Estado</label>
-          <select name="s_estado" id="s_estado"></select>
-        </div>
-        <!-- /FORM ROW -->
+      <!-- POPUP -->
+      <div id="pp-form" class="popup mfp-hide">
+        <!-- REL SCHEMA FORM -->
+        <form class="rel-schema-form top-spaced">
+          <!-- FORM ROW -->
+          <div class="form-row full">
+            <label for="s_estado">Estado</label>
+            <select name="s_estado" id="s_estado"></select>
+          </div>
+          <!-- /FORM ROW -->
 
-        <!-- FORM ROW -->
-        <div class="form-row full">
-          <label for="s_aerolinea">Aerolinea</label>
-          <select name="s_aerolinea" id="s_aerolinea"></select>
-        </div>
-        <!-- /FORM ROW -->
+          <!-- FORM ROW -->
+          <div class="form-row full">
+            <label for="s_aerolinea">Aerolinea</label>
+            <select name="s_aerolinea" id="s_aerolinea"></select>
+          </div>
+          <!-- /FORM ROW -->
 
-        <!-- FORM ROW -->
-        <div class="form-row full">
-          <label for="s_vuelo">Vuelo</label>
-          <select name="s_vuelo" id="s_vuelo"></select>
-        </div>
-        <!-- /FORM ROW -->
+          <!-- FORM ROW -->
+          <div class="form-row full">
+            <label for="s_vuelo">Vuelo</label>
+            <select name="s_vuelo" id="s_vuelo"></select>
+          </div>
+          <!-- /FORM ROW -->
 
-        <!-- FORM ROW -->
-        <div class="form-row full spaced buttons">
-          <a href="#" class="button bad">Cancelar</a>
-          <a href="#" class="button">Guardar</a>
-        </div>
-        <!-- /FORM ROW -->
-      </form>
-      <!-- /REL SCHEMA FORM -->
+          <!-- FORM ROW -->
+          <div class="form-row full spaced buttons">
+            <a href="#" class="button bad popup-close-btn">Cancelar</a>
+            <a href="#" class="button">Guardar</a>
+          </div>
+          <!-- /FORM ROW -->
+        </form>
+        <!-- /REL SCHEMA FORM -->
+      </div>
+      <!-- /POPUP -->
     </div>
     <!-- /FORM SECTION -->
   </div>
@@ -211,5 +216,11 @@
 
 <!-- app -->
 <script src="js/app.js"></script>
+<!-- jQuery -->
+<script src="js/vendor/jquery-3.2.1.min.js"></script>
+<!-- magnificPopup -->
+<script src="js/vendor/jquery.magnific-popup.min.js"></script>
+<!-- popups -->
+<script src="js/popups.js"></script>
 </body>
 </html>

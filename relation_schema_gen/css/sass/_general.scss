@@ -12,6 +12,15 @@ p {
   font-size: 14px;
 }
 
+::-moz-selection {
+  color: $white;
+  background: #333;
+}
+::selection {
+  color: $white;
+  background: #333;
+}
+
 .button {
   display: block;
   width: 200px;
@@ -171,5 +180,17 @@ p {
         text-align: center;
       }
     }
+  }
+}
+
+.popup {
+  width: 700px;
+  margin: 0 auto;
+  padding: 0 45px;
+  border: 1px solid $border-color;
+  background-color: $white;
+
+  .rel-schema-form {
+    width: 100%;
   }
 }

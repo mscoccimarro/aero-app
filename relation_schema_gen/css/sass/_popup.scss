@@ -1,0 +1,47 @@
+.mfp-bg {
+  opacity: .85;
+  background-color: #000;
+}
+/* magnificPopup animations */
+.mfp-anim {
+  /* overlay at start */
+  &.mfp-bg {
+    opacity: 0;
+    @include transition(.3s, all);
+
+    /* overlay animate in */
+    &.mfp-ready {
+      opacity: .8;
+    }
+
+    /* overlay animate out */
+    &.mfp-removing {
+      opacity: 0;
+    }
+  }
+
+  &.mfp-wrap {
+    /* content at start */
+    .mfp-content {
+      opacity: 0;
+      @include transform_scale(0);
+      @include transition(.3s, all);
+    }
+
+    /* content animate in */
+    &.mfp-ready {
+      .mfp-content {
+        opacity: 1;
+        @include transform_scale(1);
+      }
+    }
+
+    /* content animate out */
+    &.mfp-removing {
+      .mfp-content {
+        opacity: 0;
+        @include transform_scale(0);
+      }
+    }
+  }
+}
