@@ -9,3 +9,5 @@
 @mixin transition($time, $what:all, $ease:ease-in-out) {
   transition: $what $time $ease;
 }
+
+$max-index: 10000;

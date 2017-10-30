@@ -4,6 +4,7 @@
 
 .navigation {
   min-height: 90px;
+  padding-right: 40px;
   @include floatfix;
 
   .logo {
@@ -18,10 +19,18 @@
 
 .main-menu {
   @include floatfix;
+  position: relative;
+  z-index: $max-index;
 
   .main-menu-item {
     float: left;
     position: relative;
+
+    &.selected {
+      & > a {
+        background-color: $main-color;
+      }
+    }
 
     a {
       display: block;
@@ -71,8 +80,24 @@
   position: absolute;
   left: 0;
 
+  &.medium {
+    width: 250px;
+  }
+
   .dropdown-list-item {
     border-bottom: 1px solid #444;
+
+    &.selected {
+      & > a {
+        background-color: $main-color;
+        padding-left: 25px;
+
+        &:hover {
+          background-color: $main-color;
+          padding-left: 25px;
+        }
+      }
+    }
 
     a {
       line-height: 50px;
