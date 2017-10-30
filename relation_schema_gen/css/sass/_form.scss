@@ -41,6 +41,15 @@ input[type="text"], textarea {
   }
 }
 
+
+.form-action {
+  color: hsl(150, 50%, 40%);
+  font-weight: $bold;
+  font-size: 20px;
+  position: relative;
+  top: 2px;
+}
+
 .form-row {
   float: left;
   width: 48%;
@@ -67,7 +76,7 @@ input[type="text"], textarea {
 
   &.buttons {
     @include floatfix;
-    
+
     .button {
       float: left;
 

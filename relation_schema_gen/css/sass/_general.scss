@@ -133,3 +133,43 @@ p {
   @extend .msg;
   color: hsl(150, 50%, 40%);
 }
+
+.data-list {
+  display: table;
+  border: 1px solid $border-color;
+  margin: 50px auto 0;
+  background-color: $white;
+
+  .data-list-row {
+    display: table-row;
+
+    &:first-child {
+      .data-list-col {
+        background-color: #333;
+
+        p {
+          color: $white;
+          font-weight: $semibold;
+        }
+      }
+    }
+
+    &:last-child {
+      .data-list-col {
+        border-bottom: none;
+      }
+    }
+
+    .data-list-col {
+      display: table-cell;
+      border-bottom: 1px solid $border-color;
+      padding: 0 25px;
+
+      p {
+        padding: 6px 0;
+        line-height: 30px;
+        text-align: center;
+      }
+    }
+  }
+}
