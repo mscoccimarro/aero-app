@@ -24,6 +24,14 @@ p {
   line-height: 40px;
   text-align: center;
 
+  &.bad {
+    background-color: #db2e2e;
+
+    &:hover {
+      background-color: #e15151;
+    }
+  }
+
   &:hover {
     background-color: $light-blue;
   }
