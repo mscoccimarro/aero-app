@@ -12,6 +12,10 @@ p {
   font-size: 14px;
 }
 
+a {
+  cursor: pointer;
+}
+
 ::-moz-selection {
   color: $white;
   background: #333;
@@ -180,17 +184,5 @@ p {
         text-align: center;
       }
     }
-  }
-}
-
-.popup {
-  width: 700px;
-  margin: 0 auto;
-  padding: 0 45px;
-  border: 1px solid $border-color;
-  background-color: $white;
-
-  .rel-schema-form {
-    width: 100%;
   }
 }
